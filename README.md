@@ -1,7 +1,7 @@
 # GridWorld 強化學習互動環境 (DeepRL-HW1)
 
 這是一個以 Python Flask 結合前端網頁技術 (HTML, CSS, JavaScript) 所開發的 GridWorld 強化學習互動環境。本專案的主要目的是視覺化地展示「環境的設定」、「初始狀態」、以及透過「價值迭代 (Value Iteration)」演算法求解的動態擴展過程與最終最佳路徑結果。
-DEMO網站:https://deep-rl-hw-1.vercel.app/
+*  DEMO網站:https://deep-rl-hw-1.vercel.app/
 
 ## 1. 網格地圖開發
 
@@ -10,6 +10,8 @@ DEMO網站:https://deep-rl-hw-1.vercel.app/
 *   **互動式操作體驗**：
     *   **依序設定元素**：使用者可非常直覺地在網格中利用滑鼠點擊，依序部署「起始點（綠色）」、「終點（紅色）」以及剛好 $N-2$ 個「障礙物（灰色）」方塊。
     *   **動態狀態提示與懸停預覽 (Hover Preview)**：前端除了透過文字即時顯示目前應放入何種方塊外，當游標移至空白格子時，也會根據目前擺放階段，智慧渲染該步驟對應的半透明發光顏色做為防錯預覽，輔助使用者操作。
+<img width="1897" height="866" alt="image" src="https://github.com/user-attachments/assets/f33e1531-e0f2-4229-b96c-0cf4dbd89c2f" />
+
 
 ## 2. 策略與價值顯示
 
