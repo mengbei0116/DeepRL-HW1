@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GridWorld</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>GridWorld</h1>
+        </header>
+
+        <main>
+            <div class="controls panel">
+                <label for="grid-size">Grid Size (N): <span id="size-display">5</span></label>
+                <input type="range" id="grid-size" min="5" max="9" value="5" step="1">
+                <div id="status-text" class="status">目前的步驟：請點擊設定「起始點 (綠色)」</div>
+                <button id="btn-vi">開始進行價值迭代</button>
+            </div>
+
+            <div class="grid-wrapper panel">
+                <div id="grid-container"></div>
+            </div>
+
+            <div id="matrices-panel" class="panel" style="display: none; flex-direction: row; gap: 40px; justify-content: center; flex-wrap: wrap;">
+                <div class="matrix-wrapper">
+                    <h3>Value Matrix</h3>
+                    <div id="value-container" class="matrix-grid"></div>
+                </div>
+                <div class="matrix-wrapper">
+                    <h3>Policy Matrix</h3>
+                    <div id="policy-container" class="matrix-grid"></div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>

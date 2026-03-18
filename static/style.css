@@ -1,0 +1,261 @@
+:root {
+    --bg-color: #0d1117;
+    --panel-bg: #161b22;
+    --text-main: #c9d1d9;
+    --accent: #00ffff;
+    --accent-glow: rgba(0, 255, 255, 0.6);
+    --border: #30363d;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-main);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+    width: 100%;
+    max-width: 800px;
+    padding: 20px;
+}
+
+header h1 {
+    font-size: 3rem;
+    font-weight: 300;
+    letter-spacing: 2px;
+    text-shadow: 0 0 10px var(--accent-glow);
+    color: var(--accent);
+}
+
+header h1 span {
+    font-size: 1.5rem;
+    color: var(--text-main);
+    text-shadow: none;
+}
+
+.panel {
+    background-color: var(--panel-bg);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.controls {
+    gap: 15px;
+}
+
+.controls label {
+    font-size: 1.2rem;
+    letter-spacing: 1px;
+}
+
+#size-display {
+    color: var(--accent);
+    font-weight: bold;
+    text-shadow: 0 0 5px var(--accent-glow);
+}
+
+input[type="range"] {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 80%;
+    max-width: 400px;
+    background: transparent;
+}
+
+input[type="range"]::-webkit-slider-runnable-track {
+    width: 100%;
+    height: 8px;
+    cursor: pointer;
+    background: var(--border);
+    border-radius: 5px;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+    height: 20px;
+    width: 20px;
+    border-radius: 50%;
+    background: var(--accent);
+    cursor: pointer;
+    -webkit-appearance: none;
+    margin-top: -6px;
+    box-shadow: 0 0 10px var(--accent-glow);
+}
+
+.grid-wrapper {
+    /* 預留最大 9x9 網格的空間 (包含間距和邊框) 以防網頁大小浮動 */
+    width: 450px;
+    height: 450px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#grid-container {
+    display: grid;
+    gap: 2px;
+    background-color: var(--border);
+    border: 2px solid var(--accent);
+    box-shadow: 0 0 15px rgba(0, 255, 255, 0.2);
+    padding: 2px;
+    border-radius: 4px;
+}
+
+.status {
+    margin-top: 10px;
+    font-size: 1.1rem;
+    color: var(--accent);
+    text-align: center;
+}
+
+#btn-vi {
+    display: none;
+    margin-top: 10px;
+    padding: 10px 20px;
+    font-size: 1rem;
+    font-weight: bold;
+    color: var(--bg-color);
+    background-color: var(--accent);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    box-shadow: 0 0 10px var(--accent-glow);
+    transition: background-color 0.2s, box-shadow 0.2s;
+}
+
+#btn-vi:hover:not(:disabled) {
+    background-color: #00cccc;
+    box-shadow: 0 0 15px var(--accent-glow);
+}
+
+#btn-vi:disabled {
+    background-color: #555;
+    color: #888;
+    cursor: not-allowed;
+    box-shadow: none;
+}
+
+.cell {
+    width: 45px;
+    height: 45px;
+    background-color: var(--panel-bg);
+    transition: background-color 0.2s, box-shadow 0.2s;
+    border-radius: 2px;
+    cursor: pointer;
+}
+
+.cell:not(.start):not(.end):not(.obstacle):hover {
+    background-color: rgba(0, 255, 255, 0.15);
+    box-shadow: inset 0 0 8px var(--accent-glow);
+}
+
+/* Placed item classes */
+.cell.start {
+    background-color: #00ff00;
+    box-shadow: inset 0 0 10px #00ff00, 0 0 8px #00ff00;
+}
+
+.cell.end {
+    background-color: #ff0000;
+    box-shadow: inset 0 0 10px #ff0000, 0 0 8px #ff0000;
+}
+
+.cell.obstacle {
+    background-color: #888888;
+    box-shadow: inset 0 0 10px #888888, 0 0 8px #888888;
+}
+
+/* Hover preview styles based on grid container mode */
+#grid-container.placing-start .cell:not(.start):not(.end):not(.obstacle):hover {
+    background-color: rgba(0, 255, 0, 0.5);
+    box-shadow: inset 0 0 8px rgba(0, 255, 0, 0.8);
+}
+
+#grid-container.placing-end .cell:not(.start):not(.end):not(.obstacle):hover {
+    background-color: rgba(255, 0, 0, 0.5);
+    box-shadow: inset 0 0 8px rgba(255, 0, 0, 0.8);
+}
+
+#grid-container.placing-obstacle .cell:not(.start):not(.end):not(.obstacle):hover {
+    background-color: rgba(136, 136, 136, 0.5);
+    box-shadow: inset 0 0 8px rgba(136, 136, 136, 0.8);
+}
+
+/* Matrices Panels */
+.matrix-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+
+.matrix-wrapper h3 {
+    color: var(--text-main);
+    font-size: 1.2rem;
+    text-shadow: 0 0 5px rgba(200, 200, 200, 0.3);
+}
+
+.matrix-grid {
+    display: grid;
+    gap: 2px;
+    background-color: var(--border);
+    border: 2px solid var(--accent);
+    box-shadow: 0 0 10px rgba(0, 255, 255, 0.15);
+    padding: 2px;
+    border-radius: 4px;
+}
+
+.matrix-cell {
+    width: 35px;
+    height: 35px;
+    background-color: var(--panel-bg);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 0.8rem;
+    color: var(--text-main);
+    border-radius: 2px;
+}
+
+.matrix-cell.start {
+    background-color: rgba(0, 255, 0, 0.2);
+    box-shadow: inset 0 0 5px #00ff00;
+}
+
+.matrix-cell.end {
+    background-color: rgba(255, 0, 0, 0.2);
+    box-shadow: inset 0 0 5px #ff0000;
+}
+
+.matrix-cell.obstacle {
+    background-color: rgba(136, 136, 136, 0.5);
+    color: var(--panel-bg);
+}
+
+.matrix-cell.optimal-path {
+    background-color: rgba(255, 255, 0, 0.4) !important;
+    box-shadow: inset 0 0 10px #ffff00 !important;
+    color: #ffff00 !important;
+    text-shadow: 0 0 8px rgba(255, 255, 0, 0.8) !important;
+    border: 1px solid #ffff00 !important;
+    z-index: 10;
+}
