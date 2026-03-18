@@ -2,6 +2,7 @@
 
 這是一個以 Python Flask 結合前端網頁技術 (HTML, CSS, JavaScript) 所開發的 GridWorld 強化學習互動環境。本專案的主要目的是視覺化地展示「環境的設定」、「初始狀態」、以及透過「價值迭代 (Value Iteration)」演算法求解的動態擴展過程與最終最佳路徑結果。
 *  DEMO網站:https://deep-rl-hw-1.vercel.app/
+*  對話過程:https://github.com/mengbei0116/DeepRL-HW1/blob/main/%E5%B0%8D%E8%A9%B1%E9%81%8E%E7%A8%8B.md
 
 ## 1. 網格地圖開發
 
